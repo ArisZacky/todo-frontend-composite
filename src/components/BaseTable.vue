@@ -55,8 +55,8 @@ table {
   }
   th,
   td {
-    border: 1px solid black;
-    border-collapse: collapse;
+    border: 1px solid #f1f1f1;
+    // border-collapse: collapse;
   }
 }
 </style>

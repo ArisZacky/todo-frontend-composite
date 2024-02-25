@@ -130,22 +130,22 @@ onMounted(async () => await store.init())
 
 <template>
   <div class="container">
-    <h1>Test {{ $route.params?.id }}</h1>
+    <h1>My To Do List! {{ $route.params?.id }}</h1>
 
     <!-- add v-model to integrate data binding with ref -->
     <!-- add event handler listener when keyup enter -->
     <!-- method handler with addList function -->
     <!-- event modifier .enter, .prevent -->
-    <form class="form" @submit.prevent="onSubmit" @reset="resetForm">
+    <b-form class="form" @submit.prevent="onSubmit" @reset="resetForm">
       <BaseInput v-model="input.title" name="title" placeholder="Gaming" required />
       <BaseInput v-model="input.description" name="description" placeholder="Everyday" required />
       <BaseInput v-model="input.category" name="category" placeholder="Todo" />
       <div class="checkbox">
         <input type="checkbox" v-model="input.completed" name="completed" /> Completed
       </div>
-      <button type="reset">Cancel</button>
-      <button type="submit">{{ editing !== false ? 'Save' : 'Submit' }}</button>
-    </form>
+      <button class="cancel" type="reset">Cancel</button>
+      <button class="submit" type="submit">{{ editing !== false ? 'Save' : 'Submit' }}</button>
+    </b-form>
 
     <h4>Tasks</h4>
     <ol class="list">
@@ -189,16 +189,40 @@ onMounted(async () => await store.init())
   }
 }
 
+.cancel{
+    background-color: #ffbd03; /* Green */
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 12px 12px;
+}
+
+.submit{
+    background-color: #04AA6D; /* Green */
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .checkbox {
   width: 100%;
 }
 
-button {
-  .red {
+.red {
     color: red;
   }
   .orange {
     color: orange;
   }
-}
+
 </style>
