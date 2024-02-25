@@ -15,6 +15,19 @@
         category: '',
         completed: false
     }
+    const table = {
+        columns: ['id', 'title', 'description', 'completed'],
+        actions: [
+            {
+            title: 'log',
+            event: 'log-event'
+            },
+            {
+            title: 'toggle',
+            event: 'toggle-event'
+            }
+        ]
+    }
 
     // ref input
     // spread syntax
@@ -66,6 +79,21 @@
         })
     }
 
+    async function handleLogEvent(row) {
+        try {
+            console.log(row)
+        } catch (error) {
+            console.error(error)
+        }
+        }
+        async function handleToggleEvent(row) {
+        try {
+            await toggleComplete(row.id)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     onMounted(async () => await store.init())
 </script>
 
@@ -100,6 +128,14 @@
                 </li>
             </template>
         </ol>
+        <h4>Table</h4>
+        <BaseTable
+            :data="store.getTodo"
+            :columns="table.columns"
+            :actions="table.actions"
+            @log-event="handleLogEvent"
+            @toggle-event="handleToggleEvent"
+        />
     </div>
 </template>
 
