@@ -14,11 +14,29 @@
             name: 'Second List'
         }
     ])
+
+    // ref input
+    const nameInput = ref('')
+
+    // regular function
+    // function addList(params){
+    //     list.push({ name: params })
+    // }
+    // arrow function
+    const addList = (params) => {
+        list.push({ name: params })
+        nameInput.value = ''
+    }
 </script>
 
 <template>
     <h1>Test</h1>
 
+    <!-- add v-model to integrate data binding with ref -->
+    <input type="text"
+    v-model="nameInput"
+    name="name"
+    @keyup.enter="addList(nameInput)">
     <ol>
         <template v-for="item in list" v-bind:key="item">
             <li>{{ item.name }}</li>
