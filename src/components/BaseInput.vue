@@ -16,6 +16,10 @@
         modelValue: {
             type: String,
             default: ''
+        },
+        required: {
+            type: Boolean,
+            default: false
         }
     })
     // Komunikasi dari children ke parent; emit
@@ -31,6 +35,7 @@
     :name="name"
     :placeholder="placeholder"
     :value="modelValue"
+    :required="required"
     @input="(e) => $emit('update:modelValue', e.target.value)">
 </template>
 
