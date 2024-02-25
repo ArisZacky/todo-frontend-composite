@@ -33,6 +33,9 @@
     <h1>Test</h1>
 
     <!-- add v-model to integrate data binding with ref -->
+    <!-- add event handler listener when keyup enter -->
+    <!-- method handler with addList function -->
+    <!-- event modifier .enter -->
     <input type="text"
     v-model="nameInput"
     name="name"
