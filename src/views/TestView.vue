@@ -80,7 +80,7 @@
             <BaseInput type="text" v-model="input.hobby" name="hobby" placeholder="Gaming" required/>
             <BaseInput type="text" v-model="input.description" name="description" placeholder="Everyday" />
             <div class="checkbox">
-                <input type="checkbox" v-model="input.completed" name="completed" id="completed"> Completed
+                <input type="checkbox" v-model="input.completed" name="completed"> Completed
             </div>
             <button type="reset">Cancel</button>
             <button type="submit">{{ editing !== false ? 'Save' : 'Submit' }}</button>
