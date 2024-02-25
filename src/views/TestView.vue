@@ -24,8 +24,10 @@
     // }
     // arrow function
     const addList = (params) => {
-        list.push({ name: params })
-        nameInput.value = ''
+        if (params){
+            list.push({ name: params })
+            nameInput.value = ''            
+        }
     }
 </script>
 
