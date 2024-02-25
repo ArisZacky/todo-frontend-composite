@@ -1,34 +1,11 @@
 <script setup>
-    import { reactive, ref } from 'vue'
-    // Add reactive with ref
-    // Ref: buat bikin object khusus berisi reactive: {set, get}
-    // refImp;
-    // reactive buat bikin referensi langsung ke object nya
-    // proxy
+    import { ref } from 'vue'
+    import { useListStore } from '@/stores/lists'
 
-    const list = reactive([
-        {
-            name: 'First List'
-        },
-        {
-            name: 'Second List'
-        }
-    ])
+    const store = useListStore()
 
     // ref input
     const nameInput = ref('')
-
-    // regular function
-    // function addList(params){
-    //     list.push({ name: params })
-    // }
-    // arrow function
-    const addList = (params) => {
-        if (params){
-            list.push({ name: params })
-            nameInput.value = ''            
-        }
-    }
 </script>
 
 <template>
@@ -41,9 +18,9 @@
     <input type="text"
     v-model="nameInput"
     name="name"
-    @keyup.enter="addList(nameInput)">
+    @keyup.enter="store.addList(nameInput); nameInput = ''">
     <ol>
-        <template v-for="item in list" v-bind:key="item">
+        <template v-for="item in store.getList" v-bind:key="item">
             <li>{{ item.name }}</li>
         </template>
     </ol>
