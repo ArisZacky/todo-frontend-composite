@@ -1,12 +1,12 @@
 <script setup>
     import { ref, onMounted } from 'vue'
-    import { useListStore } from '@/stores/lists'
+    import { useTodoStore } from '@/stores/todo'
 
     // components
     import BaseInput from '@comp/BaseInput.vue'
 
     // store container
-    const store = useListStore()
+    const store = useTodoStore()
 
     // initial input / default input
     const defaultInput = {
@@ -36,10 +36,10 @@
 
         if(editing.value === false){
             // add list via store
-            await store.addList({ ...input.value })
+            await store.addTodo({ ...input.value })
         } else {
             // edit list
-            store.editList(editing.value, data)
+            await store.editTodo(editing.value, data)
         }
 
 
@@ -47,18 +47,18 @@
         resetForm()
     }
 
-    function detailList(index){
-        const detail = store.getDetail(index)
+    function detailTodo(id){
+        const detail = store.getDetail(id)
 
         input.value = { ...detail.value }
 
-        editing.value = index
+        editing.value = id
     }
 
-    function toggleComplete(id){
+    async function toggleComplete(id){
         const detail = store.getDetail(id)
 
-        store.editList(id, {
+        await store.editTodo(id, {
             // pass all entries in detail object 
             ...detail.value,
             // take completed value then toogle it
@@ -66,7 +66,7 @@
         })
     }
 
-    onMounted(async () => await store.initList())
+    onMounted(async () => await store.init())
 </script>
 
 <template>
@@ -91,11 +91,11 @@
         <ol>
             <!-- (item, index) -->
 
-            <template v-for="(item, index) in store.getList" v-bind:key="index">
+            <template v-for="(item, index) in store.getTodo" v-bind:key="index">
                 <!-- null chaining (?.), nullish coalescing (??); ternary operator; not operator -->
                 <li :class="{ strike: item?.completed }" @dblclick="toggleComplete(item.id)">
-                    <button class="red" @click="() => store.removeList(item.id)" :disabled="editing !== false">&times;</button>
-                    <button class="orange" @click="() => detailList(item.id)" :disabled="editing !== false">&#9998;</button>
+                    <button class="red" @click="() => store.removeTodo(item.id)" :disabled="editing !== false">&times;</button>
+                    <button class="orange" @click="() => detailTodo(item.id)" :disabled="editing !== false">&#9998;</button>
                     {{ item?.title }} - {{ !!item?.description ? item.description : '' }}
                 </li>
             </template>
@@ -107,7 +107,7 @@
 <!-- scoped untuk melimitasi hanya di komponen -->
 <!-- tambahkan lang="scss" agar bisa menggunakan fitur2 scss -->
 <!-- pastikan sudah install package 'sass'; 'npm i sass' -->
-<style scoped lang="scss">
+<style scoped>
     /* body = font-size: 16px (1rem) */
     .form {
         margin-block-end: 2rem;

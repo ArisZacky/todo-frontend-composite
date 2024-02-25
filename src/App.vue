@@ -30,7 +30,7 @@ const username = computed(() => auth.g$user.id)
         <RouterLink :to="{ name: 'Authenticated', params: { id: username ?? '' } }">
           Profile
         </RouterLink>
-        <RouterLink :to="{ name: 'test' }">Test</RouterLink>
+        <RouterLink :to="{ name: 'Todo' }">Todo</RouterLink>
         <!-- not found page -->
         <RouterLink to="/404">404</RouterLink>
       </nav>
