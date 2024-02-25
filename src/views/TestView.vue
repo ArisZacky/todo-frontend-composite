@@ -34,7 +34,7 @@
 
 <template>
     <div class="container">
-        <h1>Test</h1>
+        <h1>Test {{ $route.params?.id }}</h1>
     
         <!-- add v-model to integrate data binding with ref -->
         <!-- add event handler listener when keyup enter -->
