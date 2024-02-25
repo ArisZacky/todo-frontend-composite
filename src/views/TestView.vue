@@ -59,7 +59,9 @@
         const detail = store.getDetail(index)
 
         store.editList(index, {
+            // pass all entries in detail object 
             ...detail.value,
+            // take completed value then toogle it
             completed: !detail.value.completed
         })
     }
