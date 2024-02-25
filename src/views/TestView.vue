@@ -1,12 +1,19 @@
 <script setup>
-const list = [
-    {
-        name: 'First List',
-    },
-    {
-        name: 'Second List',
-    }
-];
+    import { reactive, ref } from 'vue'
+    // Add reactive with ref
+    // Ref: buat bikin object khusus berisi reactive: {set, get}
+    // refImp;
+    // reactive buat bikin referensi langsung ke object nya
+    // proxy
+
+    const list = reactive([
+        {
+            name: 'First List'
+        },
+        {
+            name: 'Second List'
+        }
+    ])
 </script>
 
 <template>
