@@ -81,7 +81,7 @@
                 <input type="checkbox" v-model="input.completed" name="completed" id="completed"> Completed
             </div>
             <button type="reset">Cancel</button>
-            <button type="submit">{{ editing ? 'Save' : 'Submit' }}</button>
+            <button type="submit">{{ editing !== false ? 'Save' : 'Submit' }}</button>
         </form>
 
         <ol>
