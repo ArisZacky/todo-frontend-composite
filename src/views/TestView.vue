@@ -11,7 +11,8 @@
     // initial input / default input
     const defaultInput = {
         name: '',
-        hobby: ''
+        hobby: '',
+        description: ''
     }
 
     // ref input
@@ -42,6 +43,7 @@
         <form class="form" @submit.prevent="onSubmit">
             <BaseInput type="text" v-model="input.name" name="name" placeholder="John" />
             <BaseInput type="text" v-model="input.hobby" name="hobby" placeholder="Gaming" />
+            <BaseInput type="text" v-model="input.description" name="description" placeholder="Everyday" />
             <button type="submit">Submit</button>
         </form>
 
@@ -49,7 +51,8 @@
             <!-- (item, index) -->
 
             <template v-for="(item, index) in store.getList" v-bind:key="index">
-                <li class="underline">{{ item.name }} ({{ item.hobby }}) - {{ index }}</li>
+                <!-- null chaining (?.), nullish coalescing (??); ternary operator; not operator -->
+                <li class="underline">{{ item.name }} ({{ item.hobby }}) - {{ !!item?.description ? item.description : 'description?' }}</li>
             </template>
         </ol>
     </div>
