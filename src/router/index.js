@@ -18,9 +18,24 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/test/:id?',
+      path: '/test',
       name: 'test',
       component: () => import('@/views/TestView.vue')
+    },
+    {
+      path: '/profile',
+      children: [
+        {
+          path: '',
+          name: 'login',
+          component: () => import('@/views/LoginView.vue')
+        },
+        {
+          path: 'detail/:id',
+          name: 'Authenticated',
+          component: () => import('@/views/AuthenticatedView.vue')
+        },
+      ]
     },
     {
       path: '/:pathMatch(.*)*',
