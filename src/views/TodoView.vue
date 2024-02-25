@@ -153,7 +153,7 @@ onMounted(async () => await store.init())
       <template v-for="(item, index) in store.getTodo" :key="index">
         <!-- null chaining (?.), nullish coalescing (??); ternary operator; not operator -->
         <li :class="{ strike: item?.completed }" @dblclick="toggleComplete(item.id)">
-          <button class="red" @click="() => store.removeList(item.id)" :disabled="editing !== false">&times;</button>
+          <button class="red" @click="() => store.removeTodo(item.id)" :disabled="editing !== false">&times;</button>
           <button class="orange" @click="() => detailTodo(item.id)" :disabled="editing !== false">&#9998;</button>
           {{ item?.title }} - {{ !!item?.description ? item.description : '' }}
         </li>
