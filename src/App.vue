@@ -11,12 +11,16 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
+        <!-- a href: navigation between sfc in views (based on router/index.js) -->
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
+        <!-- v-bind: add attribute binding to custom value -->
+        <RouterLink :to="{ name: 'test' }">Test</RouterLink>
       </nav>
     </div>
   </header>
 
+  <!-- as container for router page in folder views -->
   <RouterView />
 </template>
 
